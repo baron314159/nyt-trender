@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>New York Times Article Trender</title>
+        <link rel="stylesheet" type="text/css" href="assets/app.css">
+    </head>
+    <body>
+        <div class="shell">
+            <h1><a href="/">New York Times Article Trender</a></h1>
+            <div class="hr"><hr></div>
+            <div class="trendControls">
+                <form method="get" action="/">
+                    <input type="text" name="query_1" value="{{ query_1|escape }}">
+                    <select name="year_1">
+                        {% for year in years %}
+                            <option value="{{ year }}" {% ifequal year year_1 %}selected="selected"{% endifequal %}>{{ year }}</option>
+                        {% endfor %}
+                    </select>
+                    <span class="vs">- vs -</span>
+                    <input type="text" name="query_2" value="{{ query_2|escape }}">
+                    <select name="year_2">
+                        {% for year in years %}
+                            <option value="{{ year }}" {% ifequal year year_2 %}selected="selected"{% endifequal %}>{{ year }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit">View Trends</button>
+                </form>
+            </div>
+            <h2><span class="query1">{{ query_1|escape }}</span> ({{ year_1 }}) vs. <span class="query2">{{query_2|escape}}</span> ({{ year_2 }})</h2>
+            <div class="mainColumns">
+                <div class="chartColumn">
+                    <h3>Number of Articles Per Month</h3>
+                    <img src="{{ mon_chart_url|escape }}">
+                    <h3>Number of Articles Per Print Page</h3>
+                    <img src="{{ page_chart_url|escape }}">
+                </div>
+                <div class="resultsColumn">
+                    <h3>Total Articles</h3>
+                    <table class="data" cellspacing="0">
+                        <tr>
+                            <th class="query1">{{ query_1|escape }} ({{ year_1 }})</th>
+                            <td>{{ total_1 }}</td>
+                        </tr>
+                        <tr>
+                            <th class="query2">{{ query_2|escape }} ({{ year_2 }})</th>
+                            <td>{{ total_2 }}</td>
+                        </tr>
+                    </table>
+                    <h3>Top Images for <span class="query1">{{ query_1|escape }}</span> ({{ year_1 }})</h3>
+                    <div class="thumbs">
+                        {% for article in articles_1 %}
+                            {% if article.small_image_url %}
+                                <a title="{{ article.title|escape }}" href="{{ article.url|escape }}"><img src="{{ article.small_image_url|escape }}"></a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <h3>Top Images for <span class="query2">{{ query_2|escape }}</span> ({{ year_2 }})</h3>
+                    <div class="thumbs">
+                        {% for article in articles_2 %}
+                            {% if article.small_image_url %}
+                                <a title="{{ article.title|escape }}" href="{{ article.url|escape }}"><img src="{{ article.small_image_url|escape }}"></a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <h3>Top Terms for <span class="query1">{{ query_1|escape }}</span> ({{ year_1 }})</h3>
+                    <ol>
+                        {% for term in terms_1 %}
+                            <li>{{ term.0|escape }} ({{ term.1 }})</li>
+                        {% endfor %}
+                    </ol>
+                    <h3>Top Terms for <span class="query2">{{ query_2|escape }}</span> ({{ year_2 }})</h3>
+                    <ol>
+                        {% for term in terms_2 %}
+                            <li>{{ term.0|escape }} ({{ term.1 }})</li>
+                        {% endfor %}
+                    </ol>
+                    <h3>Top People for <span class="query1">{{ query_1|escape }}</span> ({{ year_1 }})</h3>
+                    <ol>
+                        {% for person in people_1 %}
+                            <li>{{ person.0|escape }} ({{ person.1 }})</li>
+                        {% endfor %}
+                    </ol>
+                    <h3>Top People for <span class="query2">{{ query_2|escape }}</span> ({{ year_2 }})</h3>
+                    <ol>
+                        {% for person in people_2 %}
+                            <li>{{ person.0|escape }} ({{ person.1 }})</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

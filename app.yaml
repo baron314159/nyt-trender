@@ -1,9 +1,10 @@
-application: tyn-search
+application: nyt-trender
 version: 1
 runtime: python
 api_version: 1
 
 handlers:
-- url: /.*
-  script: search.py
-
+- url: /
+  script: index.py
+- url: /assets
+  static_dir: assets
