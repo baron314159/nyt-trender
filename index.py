@@ -6,7 +6,8 @@ from google.appengine.api import urlfetch
 from pygooglechart import SimpleLineChart, GroupedVerticalBarChart, Axis
 import os, urllib, datetime, calendar, simplejson
 
-NYT_ARTICLE_API_KEY = '43f4045ce18a73712a23759e80f4588e:13:56107558'
+NYT_ARTICLE_API_KEY = 'REPLACE WITH YOUR ARTICLE API KEY'
+
 NYT_ARTICLE_API_URL = 'http://api.nytimes.com/svc/search/v1/article'
 DEFAULT_QUERY_1 = 'palin'
 DEFAULT_QUERY_2 = 'biden'
