@@ -24,7 +24,7 @@
                             <option value="{{ year }}" {% ifequal year year_2 %}selected="selected"{% endifequal %}>{{ year }}</option>
                         {% endfor %}
                     </select>
-                    <button type="submit">View Trends</button>
+                    <input type="submit" value="View Trends">
                 </form>
             </div>
             <h2><span class="query1">{{ query_1|escape }}</span> ({{ year_1 }}) vs. <span class="query2">{{query_2|escape}}</span> ({{ year_2 }})</h2>

@@ -48,20 +48,6 @@ blockquote, q {
     quotes: "" "";
 }
 
-/* ----- BEGIN SHRINK WRAPPING */
-
-.mainColumns:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
-}
-
-.mainColumns {
-    display: block;
-}
-
 /* ------ BEGIN APP STYLES */
 
 body {
@@ -152,7 +138,20 @@ h3 a:visited {
 
 .mainColumns {
     margin: 1.5em 10px 0;
-    background: url(vertical_rule.gif) repeat-y 65%;
+    background: url(vertical_rule.gif) repeat-y 65% 0;
+}
+
+.mainColumns:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+*:first-child+html .mainColumns {
+    zoom: 1;
+    display: block;
 }
 
 .chartColumn {
@@ -192,7 +191,7 @@ h3 a:visited {
 }
 
 ol {
-    margin-left: 20px;
+    margin-left: 30px;
     list-style: decimal;
     font-size: 1.1em;
     font-family: arial, helvetica, sans-serif;
