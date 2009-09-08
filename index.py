@@ -41,6 +41,7 @@ def article_api_request(params):
     """
     params = params.copy()
     params['api-key'] = NYT_ARTICLE_API_KEY
+    params['format'] = 'json'
     url = NYT_ARTICLE_API_URL + '?' + urllib.urlencode(params)
     return simplejson.loads(urlfetch.fetch(url).content)
 
@@ -50,7 +51,6 @@ def article_api_trend_request(query, year):
         'query': '%s publication_year:[%d]' % (query, year),
         'fields': 'url,title,small_image_url',
         'facets': 'publication_month,page_facet,des_facet,per_facet',
-        'format': 'json',
         'rank': 'closest',
     })
 
